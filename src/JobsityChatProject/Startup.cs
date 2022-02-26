@@ -8,6 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace JobsityChatProject
 {
@@ -47,8 +49,7 @@ namespace JobsityChatProject
 
             services.AddRazorPages();
 
-            services.AddSignalR();
-           
+            services.AddSignalR();           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
