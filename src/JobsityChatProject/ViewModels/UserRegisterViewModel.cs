@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JobsityChatProject.ViewModels
 {
-    public class UserDto
+    public class UserRegisterViewModel
     {
         [Required]
         public string UserName { get; set; }

@@ -10,7 +10,7 @@ namespace JobsityChatProject.Pages
     public class IndexModel : PageModel
     {
         [BindProperty]
-        public UserDto UserDto { get; set; }
+        public UserRegisterViewModel UserRegisterViewModel { get; set; }
         public IndexModel()
         {
 
