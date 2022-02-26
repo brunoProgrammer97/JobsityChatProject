@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobsityChatProject", "JobsityChatProject.csproj", "{F0DF5195-C13A-40C9-84E9-D9AE7A48A288}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobsityChatProject.Core", "..\JobsityChatProject.Core\JobsityChatProject.Core.csproj", "{F8C86D63-5D47-432B-94E4-BF1F21B9DBB6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F0DF5195-C13A-40C9-84E9-D9AE7A48A288}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0DF5195-C13A-40C9-84E9-D9AE7A48A288}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0DF5195-C13A-40C9-84E9-D9AE7A48A288}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0DF5195-C13A-40C9-84E9-D9AE7A48A288}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8C86D63-5D47-432B-94E4-BF1F21B9DBB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8C86D63-5D47-432B-94E4-BF1F21B9DBB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8C86D63-5D47-432B-94E4-BF1F21B9DBB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8C86D63-5D47-432B-94E4-BF1F21B9DBB6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {72970680-D843-42D7-8ADC-818499245D72}
+	EndGlobalSection
+EndGlobal
