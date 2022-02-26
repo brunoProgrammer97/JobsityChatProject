@@ -1,19 +1,13 @@
 using JobsityChatProject.Core.AuthManager;
 using JobsityChatProject.Core.Hubs;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace JobsityChatProject
 {
@@ -51,17 +45,10 @@ namespace JobsityChatProject
                 };
             });
 
-            services.AddRazorPages(options =>
-            {
-                options.Conventions.AuthorizePage("/Index");
-            });
+            services.AddRazorPages();
 
             services.AddSignalR();
-
-            services.ConfigureApplicationCookie(config =>
-            {
-                config.LoginPath = "/Account/Login";
-            });
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -82,7 +69,7 @@ namespace JobsityChatProject
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

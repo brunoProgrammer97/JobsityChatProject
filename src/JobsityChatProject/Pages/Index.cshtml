@@ -4,29 +4,31 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-        <div class="container col-6">
-            <div class="form-group">
-                <label for="usuario">Usuário</label>
-                <input type="text" id="usuario" class="form-control" />
+<div class="container border" style="padding:32px">
+    <form method="post">
+        <div class="form-group row">
+            <div class="col-3">
+                <label>User Name</label>
             </div>
-            <div class="form-group">
-                <label for="mensagem">Mensagem</label>
-                <textarea class="form-control" id="mensagem" rows="2"></textarea>
-            </div>
-            <input type="button" class="btn btn-primary" id="send" value="Enviar Mensagem" />
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <hr />
+            <div class="col-5">
+                <input type="text" asp-for="UserDto.UserName" />
             </div>
         </div>
-        <div class="container col-6">
-            <ul class="list-group" id="messagesList"></ul>
+        <div class="form-group row">
+            <div class="col-3">
+                <label>Password</label>
+            </div>
+            <div class="col-5">
+                <input type="text" asp-for="UserDto.Password" />
+            </div>
         </div>
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/aspnet-signalr/1.1.4/signalr.min.js'></script>
-        <script src='~/js/general-chat.js'></script>
+        <div class="form-group row">
+            <div class="col-3">
+                <label>Repeat Password</label>
+            </div>
+            <div class="col-5">
+                <input type="text" asp-for="UserDto.RepeatedPassword" />
+            </div>
+        </div>
+    </form>
 </div>

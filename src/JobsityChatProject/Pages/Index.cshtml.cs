@@ -1,15 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
+﻿using JobsityChatProject.Core.Models;
+using JobsityChatProject.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
 
 namespace JobsityChatProject.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
-
-        public IndexModel(ILogger<IndexModel> logger)
+        [BindProperty]
+        public UserDto UserDto { get; set; }
+        public IndexModel()
         {
-            _logger = logger;
+
         }
 
         public void OnGet()
