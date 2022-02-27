@@ -7,31 +7,31 @@ using Microsoft.EntityFrameworkCore;
 
 namespace JobsityChatProject.Infrastructure.Repository
 {
-    public class UserRepository : IUserRepository
+    public class ChatUserRepository : IChatUserRepository
     {
         private JobsityChatContext _context;
 
-        public UserRepository(JobsityChatContext context)
+        public ChatUserRepository(JobsityChatContext context)
         {
             _context = context;
         }
-        public async Task<User> GetUserAsync(User user)
+        public async Task<ChatUser> GetUserAsync(ChatUser user)
         {
             var userFinded = await _context.Users
-                .Where(u => u.UserName.Equals(user.UserName) && u.PasswordHash.Equals(user.PasswordHash))
+                .Where(u => u.UserName.Equals(user.UserName) && u.Password.Equals(user.Password))
                 .FirstOrDefaultAsync();
 
             return userFinded;
         }
 
-        public async Task SaveUserAsync(User user)
+        public async Task SaveUserAsync(ChatUser user)
         {
-            _context.Set<User>().Add(user);
+            _context.Set<ChatUser>().Add(user);
 
             await _context.SaveChangesAsync();
         }
 
-        public async Task<bool> ValidadeUsedUserNameAsync(User user)
+        public async Task<bool> ValidadeUsedUserNameAsync(ChatUser user)
         {
             var userFinded = await _context.Users
                 .Where(u => u.UserName.Equals(user.UserName))

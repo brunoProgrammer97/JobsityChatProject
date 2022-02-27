@@ -9,7 +9,7 @@ namespace JobsityChatProject.Core.AuthManager
 {
     public class TokenService
     {
-        public static string GenerateToken(User user)
+        public static string GenerateToken(ChatUser user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(TokenSecret.Secret);

@@ -13,10 +13,29 @@ namespace JobsityChatProject.IoC
             RegisterRepositories(services);
         }
 
+        public static void ResolveServicesScopedDependencies(this IServiceCollection services)
+        {
+            RegisterServices(services);
+        }
+
         private static void RegisterRepositories(IServiceCollection services)
         {
             var applicationInterfaces = TypesHandler.GetRepositoryInterfaces();
             var applicationClasses = TypesHandler.GetRepositories();
+
+            foreach (var @interface in applicationInterfaces)
+            {
+                var type = TypesHandler.FindType(@interface, applicationClasses);
+
+                if (type != null)
+                    services.AddScoped(@interface, type);
+            }
+        }
+
+        private static void RegisterServices(IServiceCollection services)
+        {
+            var applicationInterfaces = TypesHandler.GetServicesInterfaces();
+            var applicationClasses = TypesHandler.GetServices();
 
             foreach (var @interface in applicationInterfaces)
             {

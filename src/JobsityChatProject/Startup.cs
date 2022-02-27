@@ -13,7 +13,9 @@ using JobsityChatProject.Infrastructure.DataBaseContext;
 using Microsoft.AspNetCore.Identity;
 using JobsityChatProject.Core.Models;
 using JobsityChatProject.IoC;
-using JobsityChatProject.TestData;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Http;
 
 namespace JobsityChatProject
 {
@@ -30,37 +32,27 @@ namespace JobsityChatProject
             services.AddCors();
             services.AddControllers();
 
-            //Add all Scoped dependencies to repositories(repository pattern and IoC pattern) providing reusability instead of add each dependency manually
+            /*Add all Scoped dependencies to repositories(repository pattern and IoC pattern)
+            providing reusability instead of add each dependency manually. Do the same for services*/
+
             services.ResolveRepositoryScopedDependencies();
+            services.ResolveServicesScopedDependencies();
 
             var key = Encoding.ASCII.GetBytes(TokenSecret.Secret);
-            services.AddAuthentication(x =>
-            {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(x =>
-            {
-                x.RequireHttpsMetadata = false;
-                x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters
+            services
+                .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
                 {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = false,
-                    ValidateAudience = false
-                };
-            });
+                    options.LoginPath = "/Account/Home";
+                    options.LogoutPath = "/Index";
+                    options.Cookie.Name = "ChatCookie";
+                });
 
             services.AddDbContext<JobsityChatContext>(opt => opt.UseInMemoryDatabase("JobsityChatDatabase"));
 
-            services.AddIdentity<User, IdentityRole>()
-                    .AddEntityFrameworkStores<JobsityChatContext>()
-                    .AddDefaultTokenProviders();
-
             services.AddRazorPages();
 
-            services.AddSignalR();           
+            services.AddSignalR();
         }
 
 
@@ -83,6 +75,8 @@ namespace JobsityChatProject
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseCookiePolicy();
 
             app.UseEndpoints(endpoints =>
             {

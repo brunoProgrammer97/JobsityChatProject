@@ -5,11 +5,8 @@ namespace JobsityChatProject.Infrastructure.DataBaseContext
 {
     public class JobsityChatContext : DbContext
     {
-       
-            public JobsityChatContext(DbContextOptions<JobsityChatContext> options)
-              : base(options)
-            { }
-            public DbSet<User> Users { get; set; }
+        public JobsityChatContext(DbContextOptions<JobsityChatContext> options):base(options){ }
+        public DbSet<ChatUser> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

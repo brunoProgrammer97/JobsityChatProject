@@ -27,6 +27,24 @@ namespace JobsityChatProject.IoC
                 && type.GetCustomAttribute<CompilerGeneratedAttribute>() == null);
         }
 
+        public static IEnumerable<Type> GetServicesInterfaces()
+        {
+            return Assembly.Load("JobsityChatProject.Core").GetTypes().Where(
+                type => type.IsInterface
+                && type.Namespace != null
+                && type.Namespace.StartsWith("JobsityChatProject.Core.ServicesInterfaces"));
+        }
+
+        public static IEnumerable<Type> GetServices()
+        {
+            return Assembly.Load("JobsityChatProject.Core").GetTypes().Where(
+                type => type.IsClass
+                && !type.IsAbstract
+                && type.Namespace != null
+                && type.Namespace.StartsWith("JobsityChatProject.Core.Services")
+                && type.GetCustomAttribute<CompilerGeneratedAttribute>() == null);
+        }
+
         public static Type FindType(Type @interface, IEnumerable<Type> types)
         {
             foreach (var type in types)

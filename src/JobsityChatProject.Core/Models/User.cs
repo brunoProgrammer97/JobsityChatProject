@@ -3,8 +3,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace JobsityChatProject.Core.Models
 {
-    public class User : IdentityUser
+    public class ChatUser
     {
+        [Required]
+        public string UserName { get; set; }
+
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }

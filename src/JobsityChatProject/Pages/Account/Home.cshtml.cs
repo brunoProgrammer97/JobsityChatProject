@@ -9,7 +9,6 @@ namespace JobsityChatProject.Pages.Account
         public void OnGet()
         {
             UserChatViewModel = new UserChatViewModel();
-            this.UserChatViewModel.Username = "Teste";
         }
     }
 }
