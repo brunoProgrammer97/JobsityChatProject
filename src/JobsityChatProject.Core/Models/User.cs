@@ -6,6 +6,7 @@ namespace JobsityChatProject.Core.Models
     public class ChatUser
     {
         [Required]
+        [Key]
         public string UserName { get; set; }
 
         [Required]

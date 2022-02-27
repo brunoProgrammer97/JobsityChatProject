@@ -36,15 +36,15 @@ namespace JobsityChatProject.Pages
                     if (userRegistered != null)
                     {
                         await _chatUserResvices.SignInUserAsync(user, HttpContext);
-                        return Redirect("Account/Home");
+                        return Redirect("~/Account/Home");
                     }                    
                 }
 
-                return Redirect("Index");
+                return Redirect("~/Index");
             }
             catch (Exception)
             {
-                return Redirect("Index");
+                return Redirect("~/Index");
             }
         }
 

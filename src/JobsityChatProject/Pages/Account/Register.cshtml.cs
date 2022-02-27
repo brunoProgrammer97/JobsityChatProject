@@ -31,14 +31,14 @@ namespace JobsityChatProject.Pages.Account
                     await _chatUserResvices.SaveUserAsync(user);
                     await _chatUserResvices.SignInUserAsync(user, HttpContext);
 
-                    return Redirect("Account/Home");
+                    return Redirect("~/Account/Home");
                 }
 
-                return Redirect("Index");
+                return Redirect("~/Index");
             }
             catch (Exception)
             {
-                return Redirect("Index");
+                return Redirect("~/Index");
             }
         }
 
