@@ -3,6 +3,7 @@ using JobsityChatProject.Core.ServicesInterfaces;
 using JobsityChatProject.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
 using System.Threading.Tasks;
 
 namespace JobsityChatProject.Pages.Account
@@ -22,16 +23,23 @@ namespace JobsityChatProject.Pages.Account
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (ModelState.IsValid)
+            try
             {
-                var user = GetChatUserFromViewModel();
-                await _chatUserResvices.SaveUserAsync(user);
-                await _chatUserResvices.SignInUserAsync(user, HttpContext);
+                if (ModelState.IsValid)
+                {
+                    var user = GetChatUserFromViewModel();
+                    await _chatUserResvices.SaveUserAsync(user);
+                    await _chatUserResvices.SignInUserAsync(user, HttpContext);
 
-                return Redirect("Account/Home");
+                    return Redirect("Account/Home");
+                }
+
+                return Redirect("Index");
             }
-
-            return Redirect("Index");
+            catch (Exception)
+            {
+                return Redirect("Index");
+            }
         }
 
         private ChatUser GetChatUserFromViewModel()
