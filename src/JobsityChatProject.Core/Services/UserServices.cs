@@ -46,6 +46,10 @@ namespace JobsityChatProject.Core.Services
 
         }
 
+        public async Task SignOutUserAsync(HttpContext context)
+        {
+            await context.SignOutAsync();
+        }
     }
 }
 

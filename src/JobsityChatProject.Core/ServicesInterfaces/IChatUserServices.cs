@@ -10,5 +10,6 @@ namespace JobsityChatProject.Core.ServicesInterfaces
         Task<ChatUser> GetUserAsync(ChatUser user);
         Task SaveUserAsync(ChatUser user);
         Task SignInUserAsync(ChatUser user, HttpContext context);
+        Task SignOutUserAsync(HttpContext context);
     }
 }
