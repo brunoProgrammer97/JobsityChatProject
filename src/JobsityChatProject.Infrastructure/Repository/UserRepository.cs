@@ -1,19 +1,43 @@
 ﻿using JobsityChatProject.Core.Models;
 using JobsityChatProject.Core.RepositoryInterfaces;
+using JobsityChatProject.Infrastructure.DataBaseContext;
 using System.Threading.Tasks;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace JobsityChatProject.Infrastructure.Repository
 {
     public class UserRepository : IUserRepository
     {
-        public Task GetUserAsync(User user)
+        private JobsityChatContext _context;
+
+        public UserRepository(JobsityChatContext context)
         {
-            throw new System.NotImplementedException();
+            _context = context;
+        }
+        public async Task<User> GetUserAsync(User user)
+        {
+            var userFinded = await _context.Users
+                .Where(u => u.UserName.Equals(user.UserName) && u.PasswordHash.Equals(user.PasswordHash))
+                .FirstOrDefaultAsync();
+
+            return userFinded;
         }
 
-        public Task SaveUserAsync(User user)
+        public async Task SaveUserAsync(User user)
         {
-            throw new System.NotImplementedException();
+            _context.Set<User>().Add(user);
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<bool> ValidadeUsedUserNameAsync(User user)
+        {
+            var userFinded = await _context.Users
+                .Where(u => u.UserName.Equals(user.UserName))
+                .FirstOrDefaultAsync();
+
+            return userFinded == null;
         }
     }
 }

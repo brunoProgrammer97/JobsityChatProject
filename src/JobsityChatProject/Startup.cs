@@ -29,7 +29,7 @@ namespace JobsityChatProject
             services.AddCors();
             services.AddControllers();
 
-            //Add all Scoped dependencies to repositories(repository pattern) providing reusability instead of add each dependency manually
+            //Add all Scoped dependencies to repositories(repository pattern and IoC pattern) providing reusability instead of add each dependency manually
             services.ResolveRepositoryScopedDependencies();
 
             var key = Encoding.ASCII.GetBytes(TokenSecret.Secret);
@@ -51,7 +51,7 @@ namespace JobsityChatProject
                 };
             });
 
-            services.AddDbContext<JobsityChatContext>(opt => opt.UseInMemoryDatabase("JobsityChatDataBase"));
+            services.AddDbContext<JobsityChatContext>(opt => opt.UseInMemoryDatabase("JobsityChatDatabase"));
 
             services.AddIdentity<User, IdentityRole>()
                     .AddUserStore<JobsityChatContext>()

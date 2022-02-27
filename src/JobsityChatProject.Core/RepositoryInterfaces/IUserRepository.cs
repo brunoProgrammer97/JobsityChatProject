@@ -10,6 +10,8 @@ namespace JobsityChatProject.Core.RepositoryInterfaces
     public interface IUserRepository
     {
         Task SaveUserAsync(User user);
-        Task GetUserAsync(User user);
+        Task<User> GetUserAsync(User user);
+
+        Task<bool> ValidadeUsedUserNameAsync(User user);
     }
 }
