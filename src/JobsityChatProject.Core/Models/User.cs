@@ -1,12 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System.ComponentModel.DataAnnotations;
 
 namespace JobsityChatProject.Core.Models
 {
-    public class User
+    public class User : IdentityUser
     {
-        [Required]
-        public string UserName { get; set; }
-
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }

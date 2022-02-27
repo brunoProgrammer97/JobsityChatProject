@@ -10,6 +10,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using JobsityChatProject.Infrastructure.DataBaseContext;
+using Microsoft.AspNetCore.Identity;
+using JobsityChatProject.Core.Models;
 
 namespace JobsityChatProject
 {
@@ -48,6 +50,10 @@ namespace JobsityChatProject
             });
 
             services.AddDbContext<JobsityChatContext>(opt => opt.UseInMemoryDatabase("JobsityChatDataBase"));
+
+            services.AddIdentity<User, IdentityRole>()
+                    .AddUserStore<JobsityChatContext>()
+                    .AddDefaultTokenProviders();
 
             services.AddRazorPages();
 
