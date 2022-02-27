@@ -30,6 +30,7 @@ namespace JobsityChatProject.Pages
                 if (ModelState.IsValid)
                 {
                     var user = GetChatUserFromViewModel();
+                    
                     var userRegistered = await _chatUserResvices.GetUserAsync(user);
 
                     if (userRegistered != null)
@@ -39,11 +40,11 @@ namespace JobsityChatProject.Pages
                     }                    
                 }
 
-                return Redirect("~/Index");
+                return Page();
             }
             catch (Exception)
             {
-                return Redirect("~/Index");
+                return Page();
             }
         }
 

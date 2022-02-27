@@ -28,6 +28,19 @@ namespace JobsityChatProject.Pages.Account
                 if (ModelState.IsValid)
                 {
                     var user = GetChatUserFromViewModel();
+
+                    if (await _chatUserResvices.UsernameAlreadyUsed(user))
+                    {
+                        ModelState.AddModelError("username", "username already used!");
+                        return Page();
+                    }
+
+                    if (user.Password != user.RepeatedPassword)
+                    {
+                        ModelState.AddModelError("userpassword", "please insert de same password in both fields!");
+                        return Page();
+                    }
+
                     await _chatUserResvices.SaveUserAsync(user);
                     await _chatUserResvices.SignInUserAsync(user, HttpContext);
 

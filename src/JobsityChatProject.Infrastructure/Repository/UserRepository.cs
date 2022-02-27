@@ -37,7 +37,7 @@ namespace JobsityChatProject.Infrastructure.Repository
                 .Where(u => u.UserName.Equals(user.UserName))
                 .FirstOrDefaultAsync();
 
-            return findedUser == null;
+            return findedUser != null;
         }
     }
 }

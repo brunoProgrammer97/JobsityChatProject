@@ -7,6 +7,7 @@ namespace JobsityChatProject.Core.ServicesInterfaces
 {
     public interface IChatUserServices
     {
+        Task<bool> UsernameAlreadyUsed(ChatUser user);
         Task<ChatUser> GetUserAsync(ChatUser user);
         Task SaveUserAsync(ChatUser user);
         Task SignInUserAsync(ChatUser user, HttpContext context);
