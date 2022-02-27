@@ -1,7 +1,7 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Login Chat Page";
 }
 
 <div class="container border" style="padding:32px">
@@ -11,7 +11,7 @@
                 <label>User Name</label>
             </div>
             <div class="col-5">
-                <input type="text" asp-for="UserRegisterViewModel.UserName" />
+                <input type="text" asp-for="UserLoginViewModel.UserName" />
             </div>
         </div>
         <div class="form-group row">
@@ -19,7 +19,7 @@
                 <label>Password</label>
             </div>
             <div class="col-5">
-                <input type="text" asp-for="UserRegisterViewModel.Password" />
+                <input type="text" asp-for="UserLoginViewModel.Password" />
             </div>
         </div>
         <div class="form-group row">
