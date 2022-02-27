@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using JobsityChatProject.Infrastructure.DataBaseContext;
 using Microsoft.AspNetCore.Identity;
 using JobsityChatProject.Core.Models;
+using JobsityChatProject.IoC;
 
 namespace JobsityChatProject
 {
@@ -23,12 +24,13 @@ namespace JobsityChatProject
         }
 
         public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
             services.AddControllers();
+
+            //Add all Scoped dependencies to repositories(repository pattern) providing reusability instead of add each dependency manually
+            services.ResolveRepositoryScopedDependencies();
 
             var key = Encoding.ASCII.GetBytes(TokenSecret.Secret);
             services.AddAuthentication(x =>
