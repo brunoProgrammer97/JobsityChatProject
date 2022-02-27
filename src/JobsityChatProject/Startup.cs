@@ -13,6 +13,7 @@ using JobsityChatProject.Infrastructure.DataBaseContext;
 using Microsoft.AspNetCore.Identity;
 using JobsityChatProject.Core.Models;
 using JobsityChatProject.IoC;
+using JobsityChatProject.TestData;
 
 namespace JobsityChatProject
 {
@@ -54,7 +55,7 @@ namespace JobsityChatProject
             services.AddDbContext<JobsityChatContext>(opt => opt.UseInMemoryDatabase("JobsityChatDatabase"));
 
             services.AddIdentity<User, IdentityRole>()
-                    .AddUserStore<JobsityChatContext>()
+                    .AddEntityFrameworkStores<JobsityChatContext>()
                     .AddDefaultTokenProviders();
 
             services.AddRazorPages();
