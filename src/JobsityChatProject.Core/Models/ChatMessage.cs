@@ -6,9 +6,9 @@ namespace JobsityChatProject.Core.Models
 {
     public class ChatMessage
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public Guid Id { get; private set; }
+        public int Id { get; private set; }
         public string Message { get; set; }
         public string User { get; set; }
         public DateTime DateTime { get; set; }

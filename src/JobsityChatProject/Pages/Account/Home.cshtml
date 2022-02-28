@@ -26,7 +26,7 @@
         <ul class="list-group" id="messagesList">
             @foreach (var message in Model.ChatMessages)
             {
-                <li class="list-group-item">@message.User: @message.Message</li>
+                <li class="list-group-item">@message.User: @message.Message Timestamp: @message.DateTime.ToString("F")</li>
             }
         </ul>
     </div>
