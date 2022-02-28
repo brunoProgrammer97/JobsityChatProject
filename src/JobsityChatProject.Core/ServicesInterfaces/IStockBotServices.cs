@@ -9,5 +9,6 @@ namespace JobsityChatProject.Core.ServicesInterfaces
     public interface IStockBotServices
     {
         Task SendStock(string stockCode);
+        string GetBrokerMessage();
     }
 }

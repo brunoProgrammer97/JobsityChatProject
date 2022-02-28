@@ -24,8 +24,11 @@ namespace JobsityChatProject.Core.Services
             var stockMessageBot = FormatStockBotQuoteMessage(stockCode, stockPrice);
 
             _rabbitMqRepository.InsertStockQuoteMessage(stockMessageBot);
+        }
 
-            var teste = _rabbitMqRepository.GetStockQuoteMessage();
+        public string GetBrokerMessage()
+        {
+            return _rabbitMqRepository.GetStockQuoteMessage();
         }
 
         private string FormatStockBotQuoteMessage(string stockCode, string stockPrice)
