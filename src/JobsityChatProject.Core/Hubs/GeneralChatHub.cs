@@ -17,22 +17,30 @@ namespace JobsityChatProject.Core.Hubs
         public async Task SendMessage(string user, string message, string time)
         {
             var timestamp = DateTime.ParseExact(time, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
-            message = String.Concat(message + "  ", "Timestamp: " + timestamp.ToString("F"));
-            await Clients.All.SendAsync("ReceiveMessage", user, message);
-        }
-
-        public async Task SaveMessage(string user, string message, string time)
-        {
-            var timestamp = DateTime.ParseExact(time, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
-
-            await _chatMessageRepository
-                .SaveChatMessageAsync(  new Models
-                .ChatMessage()
-                { 
+            
+            await _chatMessageRepository.SaveChatMessageAsync(new Models.ChatMessage()
+                {
                     DateTime = timestamp,
                     Message = message,
                     User = user
                 });
+
+            
+            message = String.Concat(message + "  ", "Timestamp: " + timestamp.ToString("F"));
+            await Clients.All.SendAsync("ReceiveMessage", user, message);
+        }
+
+        public async Task SaveMessage(string message)
+        {
+            const string stockCommand = "/stock=";
+
+            var hasStockCommand = message.Contains(stockCommand);
+
+            if (hasStockCommand)
+            {
+                var stockInformation = message.Substring(message.IndexOf(stockCommand), message.IndexOf(' '));
+
+            }
         }
     }
 }
