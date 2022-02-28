@@ -35,9 +35,9 @@ namespace JobsityChatProject.Pages.Account
                         return Page();
                     }
 
-                    if (user.Password != user.RepeatedPassword)
+                    if ((user.Password != user.RepeatedPassword) || user.Password == null)
                     {
-                        ModelState.AddModelError("userpassword", "please insert de same password in both fields!");
+                        ModelState.AddModelError("userpassword", "check password and please insert de same password in both fields!");
                         return Page();
                     }
 
