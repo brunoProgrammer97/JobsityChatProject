@@ -33,7 +33,7 @@ namespace JobsityChatProject.Core.Services
 
         private string FormatStockBotQuoteMessage(string stockCode, string stockPrice)
         {
-            return string.Format("“{0} quote is ${1} per share”",stockCode.ToUpper(), stockPrice);
+            return string.Format("“{0} quote is {1} per share”",stockCode.ToUpper(), stockPrice);
         }
     }
 }

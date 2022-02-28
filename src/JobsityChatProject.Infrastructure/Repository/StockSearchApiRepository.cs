@@ -25,7 +25,7 @@ namespace JobsityChatProject.Infrastructure.Repository
             }
 
             string[] splitedStockData = response.Content.ReadAsStringAsync().Result.Split(",");
-            return splitedStockData[splitedStockData.Length - 2];
+            return splitedStockData[splitedStockData.Length - 2] != "N/D" ? "$" + splitedStockData[splitedStockData.Length - 2] : "Not Founded";
         }
     }
 }
