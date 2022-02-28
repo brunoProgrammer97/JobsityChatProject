@@ -7,6 +7,11 @@
         var li = $("<li></li>").text(user + ": " + msg);
         li.addClass("list-group-item");
         $("#messagesList").append(li);
+        if ($("#messagesList li").length > 50)
+        {
+            $('#messagesList li').first().remove();
+            alert("Deleting oldest message to maintaining last 50");
+        }
     });
 
     connection.start().then(function () {
@@ -40,13 +45,13 @@
             return console.error(err.toString());
         });
 
-        connection.invoke("SendStockQuoteMessage").catch(function (err) {
-            return console.error(err.toString());
-        });
-
         connection.invoke("SendStockToBot", message).catch(function (err) {
             return console.error(err.toString());
         });
-        
+
+        connection.invoke("SendStockQuoteMessage", message).catch(function (err) {
+            return console.error(err.toString());
+        });
+                
         event.preventDefault();        
     });

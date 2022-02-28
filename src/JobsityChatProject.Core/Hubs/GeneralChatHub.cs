@@ -33,13 +33,18 @@ namespace JobsityChatProject.Core.Hubs
             await Clients.All.SendAsync("ReceiveMessage", user, message);
         }
 
-        public async Task SendStockQuoteMessage()
+        public async Task SendStockQuoteMessage(string message)
         {
-            var message = _stockBotServices.GetBrokerMessage();
-            if (!String.IsNullOrEmpty(message))
+            const string stockCommand = "/stock=";
+
+            if(message.Contains(stockCommand))
             {
-                message = String.Concat(message + "  ", "Timestamp: " + DateTime.Now.ToString("F"));
-                await Clients.All.SendAsync("ReceiveMessage", "bot", message);
+                var messageFromBroker = _stockBotServices.GetBrokerMessage();
+                if (!String.IsNullOrEmpty(messageFromBroker))
+                {
+                    messageFromBroker = String.Concat(messageFromBroker + "  ", "Timestamp: " + DateTime.Now.ToString("F"));
+                    await Clients.All.SendAsync("ReceiveMessage", "bot", messageFromBroker);
+                } 
             }
         }
 
