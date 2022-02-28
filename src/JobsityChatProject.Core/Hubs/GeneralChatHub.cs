@@ -42,7 +42,10 @@ namespace JobsityChatProject.Core.Hubs
             if (hasStockCommand)
             {
                 var stockInformation = message.Substring(message.IndexOf(stockCommand));
-                stockInformation = stockInformation.Substring(0,stockInformation.IndexOf(' '));
+                if (stockInformation.Contains(' '))
+                {
+                    stockInformation = stockInformation.Substring(0, stockInformation.IndexOf(' '));
+                }
 
                 int positionStocCode = stockInformation.IndexOf("=");
 
