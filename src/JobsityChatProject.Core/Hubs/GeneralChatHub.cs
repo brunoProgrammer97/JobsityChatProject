@@ -38,11 +38,12 @@ namespace JobsityChatProject.Core.Hubs
 
             if (hasStockCommand)
             {
-                var stockInformation = message.Substring(message.IndexOf(stockCommand), message.IndexOf(' '));
+                var stockInformation = message.Substring(message.IndexOf(stockCommand));
+                stockInformation = stockInformation.Substring(0,stockInformation.IndexOf(' '));
 
-                int positionStockName = stockInformation.IndexOf("=");
+                int positionStocCode = stockInformation.IndexOf("=");
 
-                stockInformation.Substring(positionStockName + 1);
+                var stockCode = stockInformation.Substring(positionStocCode + 1);
             }
         }
     }
