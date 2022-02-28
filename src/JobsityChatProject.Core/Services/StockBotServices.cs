@@ -9,10 +9,12 @@ namespace JobsityChatProject.Core.Services
     public class StockBotServices : IStockBotServices
     {
         private readonly IStockSearchApiRepository _stockSearchApiRepository;
-
-        public StockBotServices(IStockSearchApiRepository stockSearchApiRepository)
+        private readonly IRabbitMqRepository _rabbitMqRepository;
+        public StockBotServices(IStockSearchApiRepository stockSearchApiRepository,
+            IRabbitMqRepository rabbitMqRepository)
         {
             _stockSearchApiRepository = stockSearchApiRepository;
+            _rabbitMqRepository = rabbitMqRepository;
         }
 
         public async Task SendStock(string stockCode)
@@ -20,6 +22,10 @@ namespace JobsityChatProject.Core.Services
             var stockPrice = await _stockSearchApiRepository.GetStockPrice(stockCode);
 
             var stockMessageBot = FormatStockBotQuoteMessage(stockCode, stockPrice);
+
+            _rabbitMqRepository.InsertStockQuoteMessage(stockMessageBot);
+
+            var teste = _rabbitMqRepository.GetStockQuoteMessage();
         }
 
         private string FormatStockBotQuoteMessage(string stockCode, string stockPrice)
