@@ -1,6 +1,6 @@
 ﻿using JobsityChatProject.Core.RepositoryInterfaces;
+using JobsityChatProject.Core.ServicesInterfaces;
 using Microsoft.AspNetCore.SignalR;
-using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
@@ -10,9 +10,12 @@ namespace JobsityChatProject.Core.Hubs
     public class GeneralChatHub : Hub
     {
         private readonly IChatMessageRepository _chatMessageRepository;
-        public GeneralChatHub(IChatMessageRepository chatMessageRepository)
+        private readonly IStockBotServices _stockBotServices;
+        public GeneralChatHub(IChatMessageRepository chatMessageRepository,
+            IStockBotServices stockBotServices)
         {
             _chatMessageRepository = chatMessageRepository;
+            _stockBotServices = stockBotServices;
         }
         public async Task SendMessage(string user, string message, string time)
         {
@@ -44,6 +47,8 @@ namespace JobsityChatProject.Core.Hubs
                 int positionStocCode = stockInformation.IndexOf("=");
 
                 var stockCode = stockInformation.Substring(positionStocCode + 1);
+
+                await _stockBotServices.SendStock(stockCode);
             }
         }
     }
