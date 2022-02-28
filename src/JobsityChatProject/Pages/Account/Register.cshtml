@@ -9,12 +9,14 @@
             <div class="col-10">
                 <label class="alert-info">Please fill this form with a unnused username and equals passwords</label>
             </div>
-            <div>
+            <div class="col-12">
                 @foreach (var item in ViewContext.ViewData.ModelState)
                 {
                     if (item.Value.Errors.Any())
                     {
-                      <label class="alert-danger">@(string.Join("; ", item.Value.Errors.Select(x => x.ErrorMessage)))</label>
+                        <label class="alert-danger">@(string.Join("; ", item.Value.Errors.Select(x => x.ErrorMessage)))</label>
+
+                        <br />
                     }
                 }
             </div>

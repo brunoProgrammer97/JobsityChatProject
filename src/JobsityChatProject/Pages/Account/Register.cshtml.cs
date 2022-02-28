@@ -35,23 +35,17 @@ namespace JobsityChatProject.Pages.Account
                         return Page();
                     }
 
-                    if ((user.Password != user.RepeatedPassword) || user.Password == null)
-                    {
-                        ModelState.AddModelError("userpassword", "check password and please insert de same password in both fields!");
-                        return Page();
-                    }
-
                     await _chatUserResvices.SaveUserAsync(user);
                     await _chatUserResvices.SignInUserAsync(user, HttpContext);
 
                     return Redirect("~/Account/Home");
                 }
 
-                return Redirect("~/Index");
+                return Page();
             }
             catch (Exception)
             {
-                return Redirect("~/Index");
+                return Page();
             }
         }
 
