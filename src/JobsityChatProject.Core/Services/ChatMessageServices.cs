@@ -2,7 +2,6 @@
 using JobsityChatProject.Core.RepositoryInterfaces;
 using JobsityChatProject.Core.ServicesInterfaces;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace JobsityChatProject.Core.Services
 {

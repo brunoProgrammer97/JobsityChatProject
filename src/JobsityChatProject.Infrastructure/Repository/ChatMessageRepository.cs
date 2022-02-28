@@ -21,5 +21,12 @@ namespace JobsityChatProject.Infrastructure.Repository
             return _context.Messages.OrderByDescending(m => m.DateTime)
                 .Take(50);
         }
+
+        public async Task SaveChatMessageAsync(ChatMessage message)
+        {
+            _context.Set<ChatMessage>().Add(message);
+
+            await _context.SaveChangesAsync();
+        }
     }
 }

@@ -7,5 +7,7 @@ namespace JobsityChatProject.Core.RepositoryInterfaces
     public interface IChatMessageRepository
     {
         IEnumerable<ChatMessage> GetTopFiftyMessagesOrderedByTimestemp();
+
+        Task SaveChatMessageAsync(ChatMessage message);
     }
 }
