@@ -28,17 +28,24 @@ namespace JobsityChatProject.Pages.Account
                 if (ModelState.IsValid)
                 {
                     var user = GetChatUserFromViewModel();
+
+                    if (await _chatUserResvices.UsernameAlreadyUsed(user))
+                    {
+                        ModelState.AddModelError("username", "username already used!");
+                        return Page();
+                    }
+
                     await _chatUserResvices.SaveUserAsync(user);
                     await _chatUserResvices.SignInUserAsync(user, HttpContext);
 
                     return Redirect("~/Account/Home");
                 }
 
-                return Redirect("~/Index");
+                return Page();
             }
             catch (Exception)
             {
-                return Redirect("~/Index");
+                return Page();
             }
         }
 

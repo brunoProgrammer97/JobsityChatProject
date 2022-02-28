@@ -17,11 +17,11 @@ namespace JobsityChatProject.Infrastructure.Repository
         }
         public async Task<ChatUser> GetUserAsync(ChatUser user)
         {
-            var userFinded = await _context.Users
+            var findedUser = await _context.Users
                 .Where(u => u.UserName.Equals(user.UserName) && u.Password.Equals(user.Password))
                 .FirstOrDefaultAsync();
 
-            return userFinded;
+            return findedUser;
         }
 
         public async Task SaveUserAsync(ChatUser user)
@@ -33,11 +33,11 @@ namespace JobsityChatProject.Infrastructure.Repository
 
         public async Task<bool> ValidadeUsedUserNameAsync(ChatUser user)
         {
-            var userFinded = await _context.Users
+            var findedUser = await _context.Users
                 .Where(u => u.UserName.Equals(user.UserName))
                 .FirstOrDefaultAsync();
 
-            return userFinded == null;
+            return findedUser != null;
         }
     }
 }

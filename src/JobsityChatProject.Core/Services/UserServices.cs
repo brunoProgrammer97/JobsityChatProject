@@ -50,6 +50,11 @@ namespace JobsityChatProject.Core.Services
         {
             await context.SignOutAsync();
         }
+
+        public async Task<bool> UsernameAlreadyUsed(ChatUser user)
+        {
+            return await _userRepository.ValidadeUsedUserNameAsync(user);
+        }
     }
 }
 

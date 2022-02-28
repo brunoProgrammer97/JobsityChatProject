@@ -1,21 +1,13 @@
-using JobsityChatProject.Core.AuthManager;
 using JobsityChatProject.Core.Hubs;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using Microsoft.EntityFrameworkCore;
 using JobsityChatProject.Infrastructure.DataBaseContext;
-using Microsoft.AspNetCore.Identity;
-using JobsityChatProject.Core.Models;
 using JobsityChatProject.IoC;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNetCore.Http;
 
 namespace JobsityChatProject
 {
@@ -38,7 +30,6 @@ namespace JobsityChatProject
             services.ResolveRepositoryScopedDependencies();
             services.ResolveServicesScopedDependencies();
 
-            var key = Encoding.ASCII.GetBytes(TokenSecret.Secret);
             services
                 .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
