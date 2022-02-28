@@ -44,7 +44,7 @@ namespace JobsityChatProject.Infrastructure.Repository
         }
         private void Connect()
         {
-            ConnectionFactory factory = new ConnectionFactory { HostName = _host, VirtualHost = "/", Port = _port, UserName = _user, Password = _password, ContinuationTimeout = TimeSpan.FromMinutes(5) };
+            ConnectionFactory factory = new ConnectionFactory { HostName = _host, Port = _port, UserName = _user, Password = _password};
 
             _conn = factory.CreateConnection();
 
