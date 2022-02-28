@@ -33,6 +33,16 @@ namespace JobsityChatProject.Core.Hubs
             await Clients.All.SendAsync("ReceiveMessage", user, message);
         }
 
+        public async Task SendStockQuoteMessage()
+        {
+            var message = _stockBotServices.GetBrokerMessage();
+            if (!String.IsNullOrEmpty(message))
+            {
+                message = String.Concat(message + "  ", "Timestamp: " + DateTime.Now.ToString("F"));
+                await Clients.All.SendAsync("ReceiveMessage", "bot", message);
+            }
+        }
+
         public async Task SendStockToBot(string message)
         {
             const string stockCommand = "/stock=";

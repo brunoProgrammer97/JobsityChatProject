@@ -40,9 +40,13 @@
             return console.error(err.toString());
         });
 
-        connection.invoke("SendStockToBot", message).catch(function (err) {
+        connection.invoke("SendStockQuoteMessage").catch(function (err) {
             return console.error(err.toString());
         });
 
+        connection.invoke("SendStockToBot", message).catch(function (err) {
+            return console.error(err.toString());
+        });
+        
         event.preventDefault();        
     });
