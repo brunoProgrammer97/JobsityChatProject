@@ -4,6 +4,7 @@ using JobsityChatProject.Infrastructure.DataBaseContext;
 using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using JobsityChatProject.Infrastructure.Queries;
 
 namespace JobsityChatProject.Infrastructure.Repository
 {
@@ -18,7 +19,7 @@ namespace JobsityChatProject.Infrastructure.Repository
         public async Task<ChatUser> GetUserAsync(ChatUser user)
         {
             var findedUser = await _context.Users
-                .Where(u => u.UserName.Equals(user.UserName) && u.Password.Equals(user.Password))
+                .Where(UserQueries.GetUserByPasswordAndUsername(user.UserName, user.Password))
                 .FirstOrDefaultAsync();
 
             return findedUser;
@@ -34,7 +35,7 @@ namespace JobsityChatProject.Infrastructure.Repository
         public async Task<bool> ValidadeUsedUserNameAsync(ChatUser user)
         {
             var findedUser = await _context.Users
-                .Where(u => u.UserName.Equals(user.UserName))
+                .Where(UserQueries.GetByUsername(user.UserName))
                 .FirstOrDefaultAsync();
 
             return findedUser != null;
