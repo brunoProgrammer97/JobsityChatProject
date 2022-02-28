@@ -6,8 +6,8 @@
 <div class="text-center">
     <div class="container col-6">
         <div class="form-group">
-            <label for="user">Hello</label>
-            <label for="message">Please Type Your Message</label>
+            <label for="user">@Model.UserChatViewModel.Username</label>
+            <label for="message"> Please Type Your Message</label>
             <textarea class="form-control" id="message" rows="2"></textarea>
         </div>
         <input type="button" class="btn btn-primary" id="send" value="Send Message" />
@@ -26,7 +26,7 @@
         <ul class="list-group" id="messagesList">
             @foreach (var message in Model.ChatMessages)
             {
-                <li>@message.User : @message.Message</li>
+                <li class="list-group-item">@message.User: @message.Message</li>
             }
         </ul>
     </div>

@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace JobsityChatProject.Pages.Account
@@ -23,8 +25,10 @@ namespace JobsityChatProject.Pages.Account
         }
         public void OnGet()
         {
+            var claimUsername = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name);
             this.ChatMessages = _chatMessageServices.GetChatMessages();
             UserChatViewModel = new UserChatViewModel();
+            UserChatViewModel.Username = claimUsername.Value;
         }
 
         public async Task<IActionResult> OnPostAsync()

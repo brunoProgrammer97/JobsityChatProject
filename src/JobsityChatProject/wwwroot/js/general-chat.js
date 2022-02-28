@@ -17,7 +17,7 @@
 
     $("#send").on("click", function (event) {
 
-        var user = $("#user").val();
+        var user = $('label[for="user"]').text();
         var message = $("#message").val();
         connection.invoke("SendMessage", user, message).catch(function (err) {
             return console.error(err.toString());

@@ -14,18 +14,9 @@ namespace JobsityChatProject.Core.Hubs
         }
         public async Task SendMessage(string user, string message)
         {
-            await SaveMessageOnDatabase(user, message);
+            var timestamp = DateTime.Now;
+            message = String.Concat("  " + message + "  Timestamp: ", timestamp.ToString("F"));
             await Clients.All.SendAsync("ReceiveMessage", user, message);
-        }
-
-        private async Task SaveMessageOnDatabase(string user, string message)
-        {
-            await _chatMessageRepository.SaveChatMessageAsync(new Models.ChatMessage()
-            {
-                DateTime = DateTime.Now,
-                Message = message,
-                User = user
-            });
         }
     }
 }
