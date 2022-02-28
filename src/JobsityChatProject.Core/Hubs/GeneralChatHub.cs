@@ -30,7 +30,7 @@ namespace JobsityChatProject.Core.Hubs
             await Clients.All.SendAsync("ReceiveMessage", user, message);
         }
 
-        public async Task SaveMessage(string message)
+        public async Task SendStockToBot(string message)
         {
             const string stockCommand = "/stock=";
 
@@ -40,6 +40,9 @@ namespace JobsityChatProject.Core.Hubs
             {
                 var stockInformation = message.Substring(message.IndexOf(stockCommand), message.IndexOf(' '));
 
+                int positionStockName = stockInformation.IndexOf("=");
+
+                stockInformation.Substring(positionStockName + 1);
             }
         }
     }

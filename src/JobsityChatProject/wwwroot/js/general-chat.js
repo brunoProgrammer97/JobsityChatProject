@@ -40,7 +40,7 @@
             return console.error(err.toString());
         });
 
-        connection.invoke("SaveMessage", user, message, time).catch(function (err) {
+        connection.invoke("SendStockToBot", message).catch(function (err) {
             return console.error(err.toString());
         });
 
