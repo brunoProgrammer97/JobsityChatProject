@@ -39,7 +39,7 @@
         var minute = date.getMinutes().padLeft(); 
         var second = date.getSeconds().padLeft();
 
-        var time = day + "/" + month.padLeft() + "/" + year + " " + hour + ':' + minute + ':' + second;
+        var time = day.padLeft() + "/" + month.padLeft() + "/" + year + " " + hour + ':' + minute + ':' + second;
 
         connection.invoke("SendMessage", user, message, time).catch(function (err) {
             return console.error(err.toString());
